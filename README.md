@@ -51,12 +51,12 @@ republicd version
 
 ## 4. Node Başlatma (Init)
 
+- `validatör-name-girin` yerine validatöre vermek istediğiniz ismi girin.
+
 ```bash
 REPUBLIC_HOME="$HOME/.republicd"
-republicd init validatör-name --chain-id raitestnet_77701-1 --home "$REPUBLIC_HOME"
+republicd init validatör-name-girin --chain-id raitestnet_77701-1 --home "$REPUBLIC_HOME"
 ```
-
-- `validatör-name` yerine istediğiniz moniker validatör yazın.
 
 ---
 
@@ -168,22 +168,44 @@ republicd keys add mykey
 
 ---
 
-## 12. Validator Oluşturma
+## 12. Bakiye Kontrol:
+
+- Bakiye geldikten sonra validatörü başlatmalısınız. Bakiyeyi aşağıdaki komut ile kontrol edebilirsiniz.
 
 ```bash
-republicd tx staking create-validator \
-  --amount=1000000000000000000000arai \
-  --pubkey=$(republicd comet show-validator) \
-  --moniker="validatör-name" \
-  --chain-id=raitestnet_77701-1 \
-  --commission-rate="0.10" \
-  --commission-max-rate="0.20" \
-  --commission-max-change-rate="0.01" \
-  --min-self-delegation="1" \
-  --gas=auto \
-  --gas-adjustment=1.5 \
-  --gas-prices="250000000arai" \
-  --from=mykey
+republicd query bank balances $(republicd keys show mykey -a)
+```
+
+---
+
+## 13. Validator Oluşturma
+
+- "moniker": "BURAYA-VALIDATOR-ISMINIZI-YAZIN" kısmını kendi validator isminizle değiştirin!
+
+```bash
+PUBKEY=$(jq -r '.pub_key.value' $HOME/.republicd/config/priv_validator_key.json)
+cat > validator.json << EOF
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"$PUBKEY"},
+  "amount": "1000000000000000000000arai",
+  "moniker": "BURAYA-VALIDATOR-ISMINIZI-YAZIN",
+  "identity": "",
+  "website": "",
+  "security": "",
+  "details": "",
+  "commission-rate": "0.1",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.01",
+  "min-self-delegation": "1"
+}
+EOF
+
+republicd tx staking create-validator validator.json \
+  --chain-id raitestnet_77701-1 \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --gas-prices 250000000arai \
+  --from mykey
 ```
 
 - `validatör-name` kısmını kendi validator adınız ile değiştirin.
@@ -191,7 +213,7 @@ republicd tx staking create-validator \
 
 ---
 
-## 13. Validator Kontrol
+## 14. Validator Kontrol
 
 ```bash
 republicd query staking validator $(republicd keys show mykey --bech val -a)
