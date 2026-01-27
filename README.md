@@ -208,9 +208,6 @@ republicd tx staking create-validator validator.json \
   --from mykey
 ```
 
-- `validatör-name` kısmını kendi validator adınız ile değiştirin.
-- `mykey` kısmı oluşturduğunuz keyi girin.
-
 ---
 
 ## 14. Validator Kontrol
