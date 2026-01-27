@@ -12,7 +12,7 @@ Aşağıdaki adımları sırasıyla uygulamanız yeterlidir.
 | **CPU**  | En az 4 çekirdek |
 | **RAM**  | Minimum 16 GB    |
 | **Disk** | En az 500 GB SSD |
-| **Sürüm**   | Ubuntu 22.04 LTS |
+| **Sürüm**   | Ubuntu 24.04 LTS |
 
 ---
 
