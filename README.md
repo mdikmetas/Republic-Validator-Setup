@@ -218,8 +218,11 @@ republicd query staking validator $(republicd keys show mykey --bech val -a)
 
 ---
 
-## ✅ Ek Notlar
+## ✅ Explorer Kontrol:
 
-* Node tamamen senkron olmadan validator oluşturmayın.
-* Seed kelimelerinizi kimseyle paylaşmayın ve güvenli bir yerde saklayın.
+- https://explorer.republicai.io/validators adresine gidin.
+- Cüzdan adresinizi aratıp üzerine tıklayın.
+- Yanında “Active” ibaresi yer alıyorsa, validatörünüz başarıyla çalışıyor demektir.
+
+![1 (2)](https://github.com/user-attachments/assets/10a1f6a0-11b2-457a-b0f8-1ee68dfe4571)
 
