@@ -201,11 +201,12 @@ cat > validator.json << EOF
 EOF
 
 republicd tx staking create-validator validator.json \
-  --chain-id raitestnet_77701-1 \
-  --gas auto \
-  --gas-adjustment 1.5 \
-  --gas-prices 250000000arai \
-  --from mykey
+--chain-id raitestnet_77701-1 \
+--gas auto \
+--gas-adjustment 1.5 \
+--fees 350000000000000arai \
+--from mykey \
+-y
 ```
 
 ---
